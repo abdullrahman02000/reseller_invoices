@@ -17,8 +17,8 @@ export class AuthService {
     private resellerRepository: Repository<Reseller>,
   ) {}
   private config = ConfigSourceProvider.instance;
-  private userPoolId = this.config.get('AWS_COGNITO_USERPOOL_ID');
-  private clientId = this.config.get('AWS_COGNITO_CLIENT_ID');
+  private userPoolId = this.config.get('COGNITO_USERPOOL_ID');
+  private clientId = this.config.get('COGNITO_CLIENT_ID');
   private verifier = CognitoJwtVerifier.create({
     userPoolId: this.userPoolId,
     tokenUse: 'access',
@@ -26,10 +26,10 @@ export class AuthService {
     graceSeconds: 10,
   });
   private client = new Cognito.CognitoIdentityProviderClient({
-    region: this.config.get('AWS_COGNITO_REGION'),
+    region: this.config.get('COGNITO_REGION'),
     credentials: {
-      accessKeyId: this.config.get('AWS_COGNITO_ACCESS_KEY_ID'),
-      secretAccessKey: this.config.get('AWS_COGNITO_SECRET_ACCESS_KEY'),
+      accessKeyId: this.config.get('COGNITO_ACCESS_KEY_ID'),
+      secretAccessKey: this.config.get('COGNITO_SECRET_ACCESS_KEY'),
     },
   });
 
