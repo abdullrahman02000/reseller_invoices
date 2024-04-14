@@ -30,6 +30,7 @@ const config = ConfigSourceProvider.instance;
       password: config.get('DB_PASSWORD'),
       database: config.get('DB_NAME'),
       host: config.get('DB_HOST'),
+      ssl: JSON.parse(config.get('DB_SSL')),
       synchronize: true,
       entities: [
         Reseller,
